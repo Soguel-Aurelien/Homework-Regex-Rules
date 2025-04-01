@@ -1,12 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regex Rules</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Règles Regex</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 </head>
 <body>
+  <button id="toggleLanguage" class="toggle-btn">Switch to English</button>
+  
+  <!-- fr -->
+  <div id="content-fr" class="language-container active">
+    <h1>Règles Regex</h1>
     
+    <!--règles -->
+    <div class="regex-section">
+      <h2>1. Adresse e-mail</h2>
+      <p class="regex">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</p>
+      <p><strong>Explication :</strong> Valide une adresse e-mail en autorisant les lettres, chiffres et certains caractères spéciaux avant le symbole "@" et un domaine suivi d’un TLD d’au moins 2 lettres.</p>
+      <p><strong>Exemple :</strong> exemple@domaine.com</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>2. Numéro de téléphone suisse</h2>
+      <p class="regex">^(?:\+41|0041|0)(\d{2})[\s.-]?(\d{3})[\s.-]?(\d{2})[\s.-]?(\d{2})$</p>
+      <p><strong>Explication :</strong> Valide un numéro de téléphone suisse qui commence par +41, 0041 ou 0, suivi de groupes de chiffres séparés éventuellement par des espaces, points ou tirets.</p>
+      <p><strong>Exemple :</strong> +41 79 123 45 67</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>3. URL</h2>
+      <p class="regex">https?://(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)</p>
+      <p><strong>Explication :</strong> Valide une URL en acceptant le protocole http ou https, éventuellement le "www", suivi d’un nom de domaine et d’un chemin.</p>
+      <p><strong>Exemple :</strong> https://www.exemple.com/page</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>4. Balise HTML</h2>
+      <p class="regex">&lt;[^&gt;]*&gt;</p>
+      <p><strong>Explication :</strong> Capture une balise HTML en détectant tout contenu entre les chevrons "&lt;" et "&gt;".</p>
+      <p><strong>Exemple :</strong> &lt;div&gt;</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>5. Adresse e-mail (domaines spécifiques)</h2>
+      <p class="regex">(\W|^)[\w.\-]{0,25}@(yahoo|hotmail|gmail)\.com(\W|$)</p>
+      <p><strong>Explication :</strong> Valide une adresse e-mail appartenant à yahoo, hotmail ou gmail, en s’assurant que le nom d’utilisateur comporte jusqu’à 25 caractères autorisés.</p>
+      <p><strong>Exemple :</strong> utilisateur@gmail.com</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>6. Date (jj/mm/aaaa)</h2>
+      <p class="regex">^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$</p>
+      <p><strong>Explication :</strong> Valide une date au format jour/mois/année avec des valeurs correctes pour le jour (01-31) et le mois (01-12).</p>
+      <p><strong>Exemple :</strong> 31/12/2020</p>
+    </div>
+
+
+    <div class="regex-section">
+      <h2>7. Heure (HH:MM)</h2>
+      <p class="regex">^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$</p>
+      <p><strong>Explication :</strong> Valide une heure au format 24h en vérifiant que l’heure est entre 00 et 23 et les minutes entre 00 et 59.</p>
+      <p><strong>Exemple :</strong> 23:59</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>8. Code à 4 chiffres</h2>
+      <p class="regex">^\d{4}$</p>
+      <p><strong>Explication :</strong> Valide une chaîne composée exactement de 4 chiffres.</p>
+      <p><strong>Exemple :</strong> 1234</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>9. Code avec 2 lettres majuscules et 5 à 6 chiffres</h2>
+      <p class="regex">^[A-Z]{2} \d{5,6}$</p>
+      <p><strong>Explication :</strong> Valide un code commençant par deux lettres majuscules, suivies d’un espace et de 5 ou 6 chiffres.</p>
+      <p><strong>Exemple :</strong> AB 12345</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>10. Code mixte (lettres et chiffres)</h2>
+      <p class="regex">^[A-Z0-9]{3}\d{2}[A-Z]\d{4}$</p>
+      <p><strong>Explication :</strong> Valide un code composé de 3 caractères alphanumériques en majuscules, 2 chiffres, 1 lettre majuscule et 4 chiffres supplémentaires.</p>
+      <p><strong>Exemple :</strong> ABC12D3456</p>
+    </div>
+  </div>
+
+  <!-- anglais -->
+  <div id="content-en" class="language-container">
+    <h1>Regex Rules</h1>
+    
+    <!-- Rules -->
+    <div class="regex-section">
+      <h2>1. Email Address</h2>
+      <p class="regex">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</p>
+      <p><strong>Explanation:</strong> Validates an email address by allowing letters, numbers, and certain special characters before the "@" and a domain followed by a TLD with at least 2 letters.</p>
+      <p><strong>Example:</strong> example@domain.com</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>2. Swiss Phone Number</h2>
+      <p class="regex">^(?:\+41|0041|0)(\d{2})[\s.-]?(\d{3})[\s.-]?(\d{2})[\s.-]?(\d{2})$</p>
+      <p><strong>Explanation:</strong> Validates a Swiss phone number that starts with +41, 0041, or 0, followed by groups of digits optionally separated by spaces, dots, or dashes.</p>
+      <p><strong>Example:</strong> +41 79 123 45 67</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>3. URL</h2>
+      <p class="regex">https?://(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)</p>
+      <p><strong>Explanation:</strong> Validates a URL by matching http or https, an optional "www", followed by a domain name and an optional path.</p>
+      <p><strong>Example:</strong> https://www.example.com/page</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>4. HTML Tag</h2>
+      <p class="regex">&lt;[^&gt;]*&gt;</p>
+      <p><strong>Explanation:</strong> Matches an HTML tag by capturing any content between "&lt;" and "&gt;".</p>
+      <p><strong>Example:</strong> &lt;div&gt;</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>5. Email Address (Specific Domains)</h2>
+      <p class="regex">(\W|^)[\w.\-]{0,25}@(yahoo|hotmail|gmail)\.com(\W|$)</p>
+      <p><strong>Explanation:</strong> Validates an email address from specific domains (yahoo, hotmail, gmail) ensuring the username is up to 25 allowed characters.</p>
+      <p><strong>Example:</strong> user.name@gmail.com</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>6. Date (dd/mm/yyyy)</h2>
+      <p class="regex">^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$</p>
+      <p><strong>Explanation:</strong> Validates a date in the format day/month/year, ensuring correct ranges for day (01-31) and month (01-12).</p>
+      <p><strong>Example:</strong> 31/12/2020</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>7. Time (HH:MM)</h2>
+      <p class="regex">^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$</p>
+      <p><strong>Explanation:</strong> Validates a time in 24-hour format, ensuring hours are between 00 and 23 and minutes between 00 and 59.</p>
+      <p><strong>Example:</strong> 23:59</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>8. 4-Digit Code</h2>
+      <p class="regex">^\d{4}$</p>
+      <p><strong>Explanation:</strong> Matches a string composed exactly of 4 digits.</p>
+      <p><strong>Example:</strong> 1234</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>9. Code with 2 Uppercase Letters and 5-6 Digits</h2>
+      <p class="regex">^[A-Z]{2} \d{5,6}$</p>
+      <p><strong>Explanation:</strong> Validates a code starting with two uppercase letters, a space, and then 5 or 6 digits.</p>
+      <p><strong>Example:</strong> AB 12345</p>
+    </div>
+
+    
+    <div class="regex-section">
+      <h2>10. Mixed Code (Letters and Digits)</h2>
+      <p class="regex">^[A-Z0-9]{3}\d{2}[A-Z]\d{4}$</p>
+      <p><strong>Explanation:</strong> Validates a code composed of 3 alphanumeric uppercase characters, 2 digits, 1 uppercase letter, and 4 more digits.</p>
+      <p><strong>Example:</strong> ABC12D3456</p>
+    </div>
+  </div>
+
+<footer>
+  <h2>Aurélien Soguel Regex EMVs1</h2>
+  <p>Sources:</p>
+  <a href="https://regex101.com/" target="_blank">Regex101</a>, 
+  <a href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank">Wikipedia</a>
+</footer>
 </body>
 </html>
